@@ -1,0 +1,53 @@
+<li class="list-group-item" orderable>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-auto">
+                            <input type="checkbox" ng-click="toggleSelectAllFolders()" />
+                        </div>
+                        <div class="col-auto">
+                            <i class="far fa-folder text-muted"></i>
+                        </div>
+                        <div class="col">
+                            <a ng-click="order('folder.name')">
+                                <small>Name <i ng-if="predicate.key==='folder.name'" class="text-muted" ng-class="orderedIconClass"></i></small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+
+<li ng-repeat="wFolder in wFolders | orderBy:predicate.key:reverse" class="list-group-item animated-repeat-item">
+    <div class="row">
+        <div class="col">
+
+            <div class="row">
+                <div class="col-auto">
+                    <input type="checkbox" ng-model="wFolder.selected" />
+                </div>
+                <div class="col-auto">
+                    <i class="far fa-folder text-muted"></i>
+                </div>
+                <div class="col">
+                    <div ng-show="!wFolder.selected">
+                        <a ui-sref="root.project.files({folderId:wFolder.folder._id})">
+                            <small>{{wFolder.folder.name}}</small>
+                        </a>
+                    </div>
+                    <div ng-show="wFolder.selected" class="input-group input-group-sm">
+                        <input type="text" ng-model="wFolder.newName" class="form-control" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info" type="button" ng-click="saveChanges(wFolder)"><i class="fa fa-save"></i></button>
+                            <button class="btn btn-outline-danger" type="button" ng-click="deleteItem(wFolder)"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

@@ -1,0 +1,56 @@
+@import "_variables";
+@import "../../node_modules/@ttcorestudio/bootstrap/css/main";
+// @import "../../../libraries/npm/@ttcorestudio/bootstrap/css/main";
+
+$clear-navbar-height: 60px;
+* {
+    box-sizing: border-box;
+}
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+#main {
+    // clear the navbar
+    margin: 0 auto;
+    iframe.full-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: $navbar-height;
+        height: 100%;
+        width: 100%;
+        border: none;
+    }
+
+    .selectable.selected{
+      background: $gray-lighter;
+   }
+}
+#notifier {
+    position: fixed;
+    width: 100%;
+    top: $clear-navbar-height;
+}
+
+.nav-pills.show-all-pills {
+   .nav-item .nav-link{
+      &:not(.active){
+         background: rgba(0,0,0,0.1);
+         color: darken($brand-primary,30%);
+         &:hover{
+            background: rgba($brand-primary,0.5);
+         }
+      }
+   }
+}
+@import "animations";
+@import "assets";
+@import "home";
+@import "buttons";
+@import "utilities";
+@import "projects";
+@import "rzslider/_rzslider";

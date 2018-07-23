@@ -1,0 +1,74 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" ui-sref-active="active" ui-sref="root.home">Taste Test</a>
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <div class="navbar-collapse" id="navbarNav">
+
+    <ul class="navbar-nav mr-auto">
+
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarPublicDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Public
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarPublicDropdown">
+          <p class="dropdown-header">No Login Required</p>
+          <a class="dropdown-item" ui-sref-active="active" ui-sref="root.tutorial">Tutorial</a>
+        </div>
+      </li> -->
+    </ul>
+
+    <!-- <li class="dropdown-header">No Login Required</li>
+    <li><a ui-sref-active="active" ui-sref="about">About page</a></li>
+    <li class="dropdown-header">Login Required</li>
+    <li><a ui-sref-active="active" ui-sref="projects">Projects</a></li> -->
+
+    <ul class="navbar-nav">
+
+      <!-- <li class="nav-item" ng-show="!USER">
+        <a class="nav-link" ng-href="/users/login" target="_self">Login</a>
+      </li> -->
+      <li class="nav-item">
+          <a class="text-light"><small>Comparisons Made: {{count}}</small></a>
+      </li>
+      <li class="nav-item dropdown" ng-show="USER">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarLoginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="{{gravatar}}" class="rounded-circle" />
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarLoginDropdown">
+          <p class="dropdown-header">{{ USER.sso.name || USER.sso.email }}</p>
+          <a class="dropdown-item" ng-href="/users/logout" target="_self">Logout</a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+
+<!-- <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-container">
+        <div class="navbar-header">
+                <a class="navbar-brand" ui-sref-active="active" ui-sref="home">CORE.WebLib Starter</a>
+                <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle">Demos<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">No Login Required</li>
+                        <li><a ui-sref-active="active" ui-sref="about">About page</a></li>
+                        <li class="dropdown-header">Login Required</li>
+                        <li><a ui-sref-active="active" ui-sref="projects">Projects</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> -->

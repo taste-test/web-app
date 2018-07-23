@@ -1,0 +1,43 @@
+<!-- Modal: New Folder -->
+<div class="modal" id="deleteFilesFolders" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-white bg-danger">
+                <h5 class="modal-title"><i class="fa fa-trash"></i> Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Are you sure you want to delete these items?
+                </p>
+                <div ng-if="items.wFolders.length">
+                    <li class="list-group-item list-group-item-danger">
+                        <h6 class="text-danger">Folders</h6>
+                        <small>All child folders and files in these folders will be deleted as well!</small>
+                    </li>
+                    <li class="list-group-item" ng-repeat="wFolder in items.wFolders">
+                        {{wFolder.folder.name}}
+                    </li>
+                </div>
+                <div ng-if="items.wFiles.length">
+                    <li class="list-group-item list-group-item-danger">
+                        <h6 class="text-danger">Files</h6>
+                    </li>
+                    <li class="list-group-item" ng-repeat="wFile in items.wFiles">
+                        {{wFile.file.name}}
+                    </li>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">
+                  <i class="fa fa-times"></i> Cancel
+                </button>
+                <button type="button" class="btn btn-danger" ng-click="confirmDeletion()">
+                    <i class="fa fa-trash"></i> Delete {{items.wAll.length}} Item<span ng-if="items.wAll.length>1">s</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

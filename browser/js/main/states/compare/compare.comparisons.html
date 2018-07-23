@@ -1,0 +1,27 @@
+<div id="comparisons" ng-show="!showSurvey">
+    <p>Time left: <span class="pulsate">{{currentTimer/1000}} seconds</span></p>
+
+    <div class="d-flex flex-row flex-sm-wrap justify-content-center">
+        <div class="p-2 align-self-baseline img-compare-border" ng-click="select(0)">
+            <img class="img-compare" ng-src="data:image/jpeg;base64,{{compareImgs[curCompare.NegativeImage.split('.')[0]]}}" alt="First compare">
+        </div>
+        <div class="p-2 align-self-baseline img-compare-border" ng-click="select(1)">
+            <img class="img-compare" ng-src="data:image/jpeg;base64,{{compareImgs[curCompare.PositiveImage.split('.')[0]]}}" alt="Second compare">
+        </div>
+    </div>
+</div>
+<div id="survey" class="row" ng-show="showSurvey" ng-class="showSurvey ? 'transition': ''">
+    <div class="col-sm-6">
+        <h5>What role do you most identify with?</h5>
+        <div class="list-group">
+            <button ng-repeat="profession in professions" type="button" class="list-group-item list-group-item-action" ng-class="{active : userRole === profession}" ng-click="selectRole(profession)">
+            {{profession}}
+        </button>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <h5>Ready to see your results?</h5>
+        <button class="btn btn-primary btn-blcok no-animate" ng-click="finishAndScore()" ng-disabled="!userRole">Show Me!</button>
+    </div>
+
+</div>

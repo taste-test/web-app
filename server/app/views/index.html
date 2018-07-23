@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/" />
+    <title>Structural Taste Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+</head>
+<body ng-app="TasteTest" class="fixed-nav">
+
+    <ui-view></ui-view>
+
+    <footer class="fixed-bottom">
+        <div class="brand">
+            <div class="container-fluid text-right">
+                <a href="http://core.thorntontomasetti.com"><link rel="import" href="https://s3-us-west-2.amazonaws.com/core-weblibrary/libraries/core-logo.svg.html"></a>&nbsp;&nbsp;&copy; {{$root.date| date:'yyyy'}}
+            </div>
+        </div>
+    </footer>
+
+    <script src="/package.js"></script>
+
+    <!-- <script src="/@ttcorestudio/core/.temp-builds/core.js"></script>
+    <script src="/@ttcorestudio/bootstrap/.temp-builds/bootstrap.js"></script>
+    <script src="/@ttcorestudio/mean-lib/.dist/browser/app.js"></script> -->
+
+    <script src="/main.js"></script>
+
+</body>
+</html>

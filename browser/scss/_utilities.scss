@@ -1,0 +1,43 @@
+.no-animate {
+   -webkit-transition: none !important;
+   transition: none !important;
+}
+[ng-click],
+[data-toggle] {
+   cursor: pointer !important;
+}
+.fixed-to-bottom-toplevel{
+    position: fixed;
+    bottom: 60px;
+    z-index: $zindex-fixed;
+}
+.full-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: $navbar-height;
+    height: 100%;
+    width: 100%;
+}
+
+.full-height {
+    position: absolute;
+    top:0;
+    // padding-top: -$navbar-height;
+    height: 100%;
+}
+
+.transparent {
+    background: rgba(255, 193, 7, 0.6);
+}
+
+.transition {
+    transform: translateY(0);
+    transition-timing-function: ease-in;
+    transition: 0.8s;
+}
+
+.text-emphasis {
+    font-size: 1.4em;
+    color: darken($primary, 35%);
+}

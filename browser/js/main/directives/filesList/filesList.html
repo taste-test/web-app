@@ -1,0 +1,96 @@
+<li class="list-group-item" orderable>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-auto">
+                    <input type="checkbox" ng-click="toggleSelectAllFiles()" />
+                </div>
+                <div class="col-auto">
+                    <i class="far fa-copy text-muted"></i>
+                </div>
+                <div class="col">
+                    <a ng-click="order('file.name')">
+                    <small>Name <i ng-if="predicate.key==='file.name'" class="text-muted" ng-class="orderedIconClass"></i></small>
+                  </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 text-right">
+            <a ng-click="order('file.size')">
+            <small>Size <i ng-if="predicate.key==='file.size'" class="text-muted" ng-class="orderedIconClass"></i></small>
+          </a>
+        </div>
+
+        <div class="col-md-2 text-right">
+            <a ng-click="order('date')">
+            <small>Date <i ng-if="predicate.key==='date'" class="text-muted" ng-class="orderedIconClass"></i></small>
+          </a>
+        </div>
+
+        <div class="col-md-2 text-right">
+            <a ng-click="order('user')">
+            <small>User <i ng-if="predicate.key==='user'" class="text-muted" ng-class="orderedIconClass"></i></small>
+          </a>
+        </div>
+    </div>
+</li>
+<li ng-repeat="wFile in wFiles | orderBy:predicate.key:reverse" class="list-group-item animated-repeat-item">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-auto">
+                    <input type="checkbox" ng-model="wFile.selected" />
+                </div>
+                <div class="col-auto">
+                    <a ng-href="{{wFile.downloadLink}}" target="_self">
+                    <i class="far" ng-class="wFile.looksLikeImage ? 'fa-file-image':'fa-file'"></i>
+                </a>
+                </div>
+                <div class="col">
+                    <small ng-show="!wFile.selected">
+                        <a ng-if="wFile.looksLikeImage" data-toggle="modal" data-target="#viewFileModal" ng-click="viewImagePopup(wFile)">
+                            {{wFile.file.name}}
+                        </a>
+                        <span ng-if="!wFile.looksLikeImage">{{wFile.file.name}}</span>
+                    </small>
+                    <div ng-show="wFile.selected" class="input-group input-group-sm">
+                        <input type="text" ng-model="wFile.newName" class="form-control" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-info" type="button" ng-click="saveChanges(wFile)"><i class="fa fa-save"></i></button>
+                            <button class="btn btn-outline-danger" type="button" ng-click="deleteItem(wFile)"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2 text-right">
+            <small class="text-muted">{{wFile.file.size | bytes}}</small>
+        </div>
+
+        <div class="col-md-2 text-right">
+            <small class="text-muted">{{wFile.date | momentCalendar}}</small>
+        </div>
+
+        <div class="col-md-2 text-right">
+            <small class="text-muted">{{wFile.user}}</small>
+        </div>
+    </div>
+</li>
+
+
+<div class="modal" id="{{modalId}}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{curWImage.file.name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img class="img-fluid" src="{{curWImage.previewLink}}" />
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,43 @@
+
+<div class="input-group input-group-sm mb-3" ng-show="showPathOptions">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="input-path-addon">{{uploadPathPrefix}}</span>
+  </div>
+  <input type="text" class="form-control" placeholder="upload path" aria-describedby="input-path-addon" ng-model="uploadPath">
+</div>
+
+<div class="input-group mb-3">
+  <div class="custom-file">
+    <input id="file-input-{{$id}}" type="file" class="custom-file-input" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+    <label class="custom-file-label" for="file-input-{{$id}}">Choose or drag here</label>
+  </div>
+</div>
+
+<div ng-repeat="progress in progresses" ng-hide="progress.done" class="mt-2">
+    <small>{{progress.name}} : {{progress.percent}}%</small>
+    <div class="progress mini">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{progress.percent}} aria-valuemin="0" aria-valuemax="100" style="width:{{progress.percent}}%">
+            <span class="sr-only">{{progress.percent}}% Complete</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="input-group input-group-sm" ng-show="showPathOptions">
+    <span class="input-group-addon" id="input-path-addon">{{uploadPathPrefix}}</span>
+    <input type="text" class="form-control" placeholder="upload path" aria-describedby="input-path-addon" ng-model="uploadPath">
+</div>
+<hr ng-show="showPathOptions" />
+<label class="import-file">
+    <input type="file" multiple onchange="angular.element(this).scope().fileNameChanged(this)">
+
+    <div ng-repeat="progress in progresses" ng-hide="progress.done" class="mt-2">
+        <small>{{progress.name}} : {{progress.percent}}%</small>
+        <div class="progress mini">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{progress.percent}} aria-valuemin="0" aria-valuemax="100" style="width:{{progress.percent}}%">
+                <span class="sr-only">{{progress.percent}}% Complete</span>
+            </div>
+        </div>
+    </div>
+
+</label> -->

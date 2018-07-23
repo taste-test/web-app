@@ -1,0 +1,44 @@
+<ul class="list-group" ng-if="wProjects.length">
+
+  <li class="list-group-item d-none d-sm-block">
+    <div class="row">
+
+      <div class="col-md-6">
+        <a ng-click="order('project.name')">
+          <small>Name <i ng-if="predicate.key==='project.name'" class="text-muted" ng-class="orderedIconClass"></i></small>
+        </a>
+      </div>
+
+      <div class="col-md-3 text-right">
+        <a ng-click="order('created.date')">
+          <small>Created <i ng-if="predicate.key==='created.date'" class="text-muted" ng-class="orderedIconClass"></i></small>
+        </a>
+      </div>
+
+      <div class="col-md-3 text-right">
+        <a ng-click="order('modified.date')">
+          <small>Modified <i ng-if="predicate.key==='modified.date'" class="text-muted" ng-class="orderedIconClass"></i></small>
+        </a>
+      </div>
+
+    </div>
+  </li>
+
+  <li ng-repeat="wP in wProjects | orderBy:predicate.key:reverse" class="list-group-item animated-repeat-item">
+    <div class="row">
+
+      <div class="col-md-6">
+        <a ui-sref="root.project.home({projectId:wP.project._id})"><h6 class="m-0">{{wP.project.name}}</h6></a>
+      </div>
+
+      <div class="col-md-3 text-right">
+        <small class="text-muted">{{wP.created.date | momentCalendar}} by {{wP.created.user}}</small>
+      </div>
+
+      <div class="col-md-3 text-right">
+        <small class="text-muted">{{wP.modified.date | momentCalendar}} by {{wP.modified.user}}</small>
+      </div>
+
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,14 @@
+<div class="btn-group btn-group-sm" role="group" aria-label="Sort by">
+    <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-tertiary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort by {{predicate.label}}
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" ng-repeat="predicate in predicates" ng-click="order(predicate)">{{predicate.label}}</a>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-tertiary" ng-click="order(predicate)">
+        <i class="{{orderedIconClass}}"></i>
+    </button>
+</div>

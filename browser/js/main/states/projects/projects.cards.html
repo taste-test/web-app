@@ -1,0 +1,32 @@
+<div class="row" ng-if="wProjects.length">
+    <div class="col-md-6 col-lg-4 col-xl-3 animated-repeat-item" ng-repeat="wP in wProjects | orderBy:predicate:reverse">
+        <div class="card project mb-g-4" role="button">
+            <a ui-sref="root.project.home({projectId:wP.project._id})"><h5 class="card-header">{{wP.project.name}}</h5></a>
+            <img class="card-img-top" src="/assets/imgs/projectplaceholderimage.png" alt="Card image cap">
+            <div class="card-body">
+
+                <div ng-if="wP.project.description.length">
+                    <p class="card-text">
+                        {{wP.project.description | limitTo : 150 }}<span ng-if="wP.project.description.length > 150">...</span>
+                    </p>
+                    <hr />
+                </div>
+
+                <p ng-show="predicate.key!=='created.date'" class="card-text text-right">
+                    <small class="text-muted">
+                        Modified <br/>
+                        {{wP.modified.date | momentCalendar}} by {{wP.modified.user}}
+                    </small>
+                </p>
+
+                <p ng-show="predicate.key==='created.date'" class="card-text text-right">
+                    <small class="text-muted">
+                        Created <br/>
+                        {{wP.created.date | momentCalendar}} by {{wP.created.user}}
+                    </small>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>

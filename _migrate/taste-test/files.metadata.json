@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"taste-test.files"},{"v":2,"unique":true,"key":{"s3Key":1},"name":"s3Key_1","ns":"taste-test.files","background":true}]}

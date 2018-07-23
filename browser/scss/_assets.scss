@@ -1,0 +1,41 @@
+.img-compare {
+    height: 300px;
+    // margin: 0 -25%;
+    background-position: center center;
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+}
+
+.img-compare-border {
+    max-width: 400px;
+    height: 300px;
+    overflow: hidden;
+    padding: 20px;
+    background-color: #fafafa;
+}
+
+.img-represent {
+    height: 200px;
+    // margin: 0 -25%;
+    background-position: center center;
+    /* Make the background image cover the area of the <div>, and clip the excess */
+    background-size: cover;
+}
+
+.img-represent-border {
+    max-width: 200px;
+    height: 150px;
+    overflow: hidden;
+    padding: 20px;
+    // background-color: #fafafa;
+}
+
+.backsplash {
+    min-height: 100vh;
+    min-width: 100%;
+    opacity: 0.3;
+    background-size: cover;
+    background-image: url("../assets/imgs/la_sagrada.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+}

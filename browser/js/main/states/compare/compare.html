@@ -1,0 +1,56 @@
+<div class="header">
+    <div class="container">
+        <h4 class="display-header" ng-show="!showSummary && !showSurvey">Which do you prefer?</h4>
+        <h4 class="display-header" ng-show="showSurvey && !showSummary">Tell us about yourself</h4>
+        <h4 class="display-header" ng-show="!showSurvey && showSummary" ng-class="showSummary ? 'transition': ''">Here are your preferences</h4>
+    </div>
+</div>
+<div class="container pb-4" key-press-events>
+    <ui-view></ui-view>
+    <!-- <div id="comparisons" ng-show="!showSummary && !showSurvey" ng-class="!showSummary ? '': ''">
+        <h5>Time left: {{currentTimer/1000}} seconds</h5>
+
+        <div class="d-flex flex-row flex-sm-wrap justify-content-center">
+            <div class="p-2 align-self-baseline img-compare-border" ng-click="select(0)">
+                <img class="img-compare" ng-src="data:image/jpeg;base64,{{compareImgs[curCompare.NegativeImage.split('.')[0]]}}" alt="First compare">
+            </div>
+            <div class="p-2 align-self-baseline img-compare-border" ng-click="select(1)">
+                <img class="img-compare" ng-src="data:image/jpeg;base64,{{compareImgs[curCompare.PositiveImage.split('.')[0]]}}" alt="Second compare">
+            </div>
+        </div>
+    </div>
+    <div id="survey" class="row" ng-show="showSurvey && !showSummary" ng-class="showSurvey ? 'transition': ''">
+        <div class="col-sm-6">
+            <h5>What role do you most identify with?</h5>
+            <div class="list-group">
+                <button ng-repeat="profession in professions" type="button" class="list-group-item list-group-item-action" ng-class="{active : userRole === profession}" ng-click="selectRole(profession)">
+                {{profession}}
+            </button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h5>Ready to see your results?</h5>
+            <button class="btn btn-primary btn-blcok no-animate" ng-click="finishAndScore()" ng-disabled="!userRole">Show Me!</button>
+        </div>
+
+    </div>
+    <div id="summary" ng-show="!showSurvey && showSummary" ng-class="showSummary ? 'transition': ''">
+        <div>
+            <table class="table">
+                <tr ng-repeat="score in scores">
+                    <td>{{score.Feature}}
+                        <rzslider floor-label="score.Feature" rz-slider-options="scoreSlider.options(score.Feature)" rz-slider-model="score.Score"></rzslider>
+                    </td>
+                </tr>
+            </table>
+            <div class="d-flex flex-row flex-sm-wrap justify-content-space-around">
+                <div class="p-2 align-self-baseline image-represent-border" ng-repeat="repImg in summaryImgs">
+                    <img class="img-represent" ng-src="data:image/jpeg;base64,{{repImg}}" alt="Representative Image">
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div id="summary" ng-show="!showSurvey && showSummary" ng-class="showSummary ? 'transition': ''">
+        <ui-view></ui-view>
+    </div> -->
+</div>

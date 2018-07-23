@@ -1,0 +1,14 @@
+<div>
+    <table class="table">
+        <tr ng-repeat="score in scores">
+            <td>{{score.Feature}}
+                <rzslider floor-label="score.Feature" rz-slider-options="scoreSliderOpts[score.Feature]" rz-slider-model="score.Score"></rzslider>
+            </td>
+        </tr>
+    </table>
+    <div class="d-flex flex-row flex-sm-wrap justify-content-space-around">
+        <div class="p-2 align-self-baseline image-represent-border" ng-repeat="repImg in summaryImgs">
+            <img class="img-represent" ng-src="data:image/jpeg;base64,{{repImg}}" alt="Representative Image">
+        </div>
+    </div>
+</div>
