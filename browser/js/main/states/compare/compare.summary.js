@@ -30,7 +30,7 @@ app.config(function($stateProvider) {
 	*/
 
     function StateCtrlr($scope, $state, ImageSvc) {
-        CORE.log("summary, role + comparison? ", $scope.compareScope.userRole, $scope.compareScope.curComparison);
+        console.log("summary, role + comparison? ", $scope.compareScope.userRole, $scope.compareScope.curComparison);
         $scope.compareScope.showSummary = true;
 
         if ($scope.compareScope.curComparison) {

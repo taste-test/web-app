@@ -31,7 +31,7 @@ app.config(function($stateProvider) {
 
         //EVENTS
         $rootScope.$on('keypress', function(evt, obj, key) {
-            CORE.log(key);
+            console.log(key);
             if (key.toUpperCase() === "F")
                 userComparisons[i].Preference = "Negative";
             if (key.toUpperCase() === "J")
@@ -44,12 +44,12 @@ app.config(function($stateProvider) {
 
         //SCOPE FN
         $scope.clicked = function(evt, imageI) {
-            CORE.log("Clicked image ", imageI);
+            console.log("Clicked image ", imageI);
             incrementOrFinish();
         };
 
         $scope.select = function(val) {
-            CORE.log("In select ", val);
+            console.log("In select ", val);
             userComparisons[i].Preference = val
                 ? "Positive"
                 : "Negative";
@@ -61,14 +61,14 @@ app.config(function($stateProvider) {
         };
 
         $scope.finishAndScore = function() {
-            CORE.log("Finished comparison");
+            console.log("Finished comparison");
             clearInterval(autoIncrement);
             $interval.cancel(showTimer);
             $scope.currentTimer = incrementTime;
 
             $scope.compareScope.showSurvey = false;
             // $scope.showSummary = true;
-            CORE.log("Role selected = ", $scope.compareScope.userRole);
+            console.log("Role selected = ", $scope.compareScope.userRole);
             convertBlankToNA();
             $scope.compareScope.curComparison = userComparisons;
             $state.go("root.compare.summary");

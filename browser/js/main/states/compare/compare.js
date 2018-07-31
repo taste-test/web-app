@@ -22,7 +22,7 @@ app.config([
         });
 
         function StateCtrlr($rootScope, $state, $scope, $timeout, $interval, getCompare, getRoles, ImageSvc, CountSvc) {
-            CORE.log("Got compare:", getCompare, " and got roles: ", getRoles);
+            console.log("Got compare:", getCompare, " and got roles: ", getRoles);
             $scope.compareScope = $scope;
             $scope.roles = getRoles;
             $scope.comparisons = getCompare;
