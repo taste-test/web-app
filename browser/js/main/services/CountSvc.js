@@ -38,7 +38,7 @@ app.service('CountSvc', function ($http, AppUtilSvc, S3Svc, $rootScope) {
          return $http.post("/api/counter/add-count", postBody)
              .then(AppUtilSvc.api.returnData)
              .then(function(newCount){
-                 CORE.log("New count: ", newCount);
+                 console.log("New count: ", newCount);
                  $rootScope.$broadcast(CountSvc.EVENTS.NEW_COUNT, newCount);
              })
              .catch(AppUtilSvc.api.catchErr);
