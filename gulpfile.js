@@ -162,6 +162,7 @@ WATCH/RUN
 gulp.task('watch', ['browserSync', 'sass'], function() {
     gulp.watch(browserSass, ['sass']);
     // Other watchers
+    gulp.watch(browserHTML, browserSync.reload);
     gulp.watch(serverHTML, browserSync.reload);
     gulp.watch(browserJs, browserSync.reload);
 });
@@ -177,6 +178,6 @@ gulp.task('default', function() {
     gulp.watch(serverJs, ['lint-server-js']);
 
     gulp.watch([serverHTML], browserSync.reload);
-    gulp.watch(browserJs, ['build-js']);
+    gulp.watch([browserJs,browserHTML], ['build-js', browserSync.reload]);
     gulp.watch(browserSass, ['sass']);
 });

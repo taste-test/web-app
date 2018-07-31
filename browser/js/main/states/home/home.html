@@ -2,35 +2,39 @@
     <div class="transparent full-screen"></div>
 </div>
 <div class="container">
-    <div class="d-flex align-items-center full-height col-md-8 col-sm-8 pb-2">
-        <!-- <div class="flex-center-item px-2 py-2 bg-darker">
+    <div class="d-flex align-items-center col-md-8 col-sm-8 py-4">
+        <div class="flex-center-item px-2 my-2 bg-darker">
             <h1>Welcome to Taste Test!</h1>
             <p>Curious about what your structural aesthetic preferences are? Discover them here!</p>
             <h5>How to Select</h5>
-            <p>You will be shown sets of photos side by side. Please select which you prefer, by pressing the <strong><span class="text-emphasis">F</span></strong>                key for the left photo and the <strong><span class="text-emphasis">J</span></strong> key for the right photo,
-                or by clicking on the photo of your choice.</p>
+            <p>You will be shown sets of photos side by side. Please select which you prefer, by pressing the <strong><span class="text-emphasis">F</span></strong> key for the left photo and the <strong><span class="text-emphasis">J</span></strong> key for
+                the right photo, or by clicking on the photo of your choice.</p>
             <h5>Be Quick!</h5>
-            <p>You'll have a total of <strong><span class="text-emphasis">3 seconds</span></strong> to select your favorite.
-                Go with your gut!</p>
+            <p>You'll have a total of <strong><span class="text-emphasis">3 seconds</span></strong> to select your favorite. Go with your gut!</p>
             <h5>Get Results</h5>
-            <p>At the end of the comparisons, you'll be taken to a screen where you will see a summary and representative photographs
-                of your preferences.</p>
-              <button class="btn btn-primary" ng-click="startCountdown()" ng-disabled="countdownStarted">Ready? Start Comparing</button>
-              <span ng-show="countdownStarted">&emsp;
-                  <span class="pulsate" ng-hide="currentCountdown === 1">{{currentCountdown}}</span>
-                  <span class="pulsate text-emphasis" ng-show="currentCountdown === null">Go!</span>
-              </span>
-              <div class="my-2">
+            <p>At the end of the comparisons, you'll be taken to a screen where you will see a summary and representative photographs of your preferences.</p>
+
+            <button class="btn btn-primary" ng-click="startCountdown()" ng-disabled="countdownStarted">Ready? Start Comparing</button>
+            <span ng-show="countdownStarted">&emsp;
+                    <span class="pulsate" ng-hide="currentCountdown === 1">{{currentCountdown}}</span>
+            <span class="pulsate text-emphasis" ng-show="currentCountdown === null">Go!</span>
+            </span>
+            <div class="my-2">
                 &emsp;
-              </div>
+            </div>
+
+        </div>
+
+        <!-- <div class="flex-center-item pl-2">
+            <button class="btn btn-primary" ng-click="startCountdown()" ng-disabled="countdownStarted">Ready? Start Comparing</button>
+            <span ng-show="countdownStarted">&emsp;
+                <span class="pulsate" ng-hide="currentCountdown === 1">{{currentCountdown}}</span>
+            <span class="pulsate text-emphasis" ng-show="currentCountdown === null">Go!</span>
+            </span>
+            <div class="my-2">
+                &emsp;
+            </div>
         </div> -->
-        <div class="flex-center-item pr-3">
-            <h1><i class="jumbo fa fa-lg fa-wrench"></i></h1>
-        </div>
-        <div class="flex-center-item">
-            <h1>Taste Test is under maintenance. </h1>
-            <h3>We'll be back as soon as we can!</h3>
-        </div>
 
     </div>
 </div>
