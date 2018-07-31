@@ -1,6 +1,7 @@
 @import "_variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
-$navbar-height: 50px;
+$navbar-height: 56px !default;
+$navbar-height-clear: $navbar-height !default;
 $clear-navbar-height: 60px;
 * {
     box-sizing: border-box;
@@ -11,6 +12,38 @@ $clear-navbar-height: 60px;
         display: table;
         clear: both;
     }
+}
+
+html {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+
+  &.fixed-nav{
+    padding-top: $navbar-height-clear;
+  }
+
+  .lead-element{
+      margin-top: -$navbar-height-clear;
+      padding-top: $navbar-height-clear;
+  }
+}
+
+footer {
+  p, ul {
+    margin-bottom: 0;
+  }
+}
+
+// Dropdowns
+// -------------------------
+
+.dropdown-menu > li > a {
+  font-weight: 300;
 }
 #main {
     // clear the navbar

@@ -5,6 +5,7 @@ app.config(function($stateProvider) {
 		resolve: {
 			waitForAuthentication: function(AuthService) {
 				return AuthService.getLoggedInUser().then(function(user) {
+					console.log("auth service user: ", user);
 					return user;
 				});
 			},

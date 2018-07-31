@@ -10,7 +10,7 @@ app.config([
         });
 
         function StateCtrlr($scope, $timeout, $interval, $state) {
-
+            TASTE.log("What?");
             var countdownTime = 5000;
             var displayInterval = 1000;
 
