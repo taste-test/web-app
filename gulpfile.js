@@ -49,7 +49,7 @@ var esLintBrowser = {
 var browserJs = 'browser/js/**/*.js';
 var browserSass = 'browser/scss/**/*.scss';
 var browserFonts = 'browser/fonts/**';
-var browserAssets = 'browser/assets/*.svg';
+var browserAssets = 'browser/assets/**';
 var browserHTML = 'browser/**/*.html';
 
 var serverJs = 'server/**/*.js';
