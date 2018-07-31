@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
 
 	$stateProvider.state('root', {
-		templateUrl: 'js/main/states/_root/root.html',
+		templateUrl: 'root.html',
 		resolve: {
 			waitForAuthentication: function(AuthService) {
 				return AuthService.getLoggedInUser().then(function(user) {

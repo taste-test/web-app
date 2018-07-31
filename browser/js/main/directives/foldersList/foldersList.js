@@ -5,7 +5,7 @@ app.directive('foldersList', function(AppUtilSvc, FolderSvc, NotificationService
 			wFolders: '=',
 			deleteItem: '<'
 		},
-		templateUrl: 'js/main/directives/foldersList/foldersList.html',
+		templateUrl: 'foldersList.html',
 		link: function($scope) {
 
 			$scope.predicates = [{

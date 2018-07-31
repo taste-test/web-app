@@ -2,7 +2,7 @@ app.config(function($stateProvider) {
 
     $stateProvider.state('root.compare.summary', {
         url: '/summary',
-        templateUrl: 'js/main/states/compare/compare.summary.html',
+        templateUrl: 'compare.summary.html',
         // resolve: {
         //     summary: function(ImageSvc, $stateParams) {
         //         return ImageSvc.one_postSummary({role: $scope.compareScope.userRole, comparisons: $scope.compareScope.curComparison}).then(function(summary) {

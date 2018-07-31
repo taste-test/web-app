@@ -4,6 +4,7 @@ const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const glog = require('fancy-log');
 const sourcemaps = require('gulp-sourcemaps');
+const embedTemplates = require('gulp-angular-embed-templates');
 const browserSync = require('browser-sync').create();
 const runSeq = require('run-sequence');
 const eslint = require('gulp-eslint');
@@ -49,6 +50,7 @@ var browserJs = 'browser/js/**/*.js';
 var browserSass = 'browser/scss/**/*.scss';
 var browserFonts = 'browser/fonts/**';
 var browserAssets = 'browser/assets/*.svg';
+var browserHTML = 'browser/**/*.html';
 
 var serverJs = 'server/**/*.js';
 var serverHTML = 'server/app/views/*.html';
@@ -93,6 +95,7 @@ gulp.task('assets', function() {
 gulp.task('build-js', function() {
     return gulp.src(browserJs)
         .pipe(sourcemaps.init())
+        .pipe(embedTemplates())
         .pipe(babel())
         .pipe(concat('main.js'))
         .pipe(sourcemaps.write())

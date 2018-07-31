@@ -5,7 +5,7 @@ app.directive('deleteFilesFoldersModal', function(FolderSvc, FileSvc) {
 			project: '<',
 			items: '<'
 		},
-		templateUrl: 'js/main/directives/modals/deleteFilesFoldersModal/deleteFilesFoldersModal.html',
+		templateUrl: 'deleteFilesFoldersModal.html',
 		link: function($scope) {
 
 			$scope.confirmDeletion = function() {

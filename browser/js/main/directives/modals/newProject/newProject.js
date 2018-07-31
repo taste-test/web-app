@@ -1,7 +1,7 @@
 app.directive('newProject', function(ProjectSvc, $rootScope, $timeout, NotificationService, AppUtilSvc) {
 	return {
 		restrict: 'E',
-		templateUrl: 'js/main/directives/modals/newProject/newProject.html',
+		templateUrl: 'newProject.html',
 		link: function($scope, element, attributes) {
 			$scope.modalId = attributes.ngId;
 			$scope.name = "";

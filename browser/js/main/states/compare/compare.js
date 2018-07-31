@@ -4,7 +4,7 @@ app.config([
 
         $stateProvider.state('root.compare', {
             url: '/compare',
-            templateUrl: 'js/main/states/compare/compare.html',
+            templateUrl: 'compare.html',
             abstract: true,
             resolve: {
                 getCompare: function(ImageSvc) {

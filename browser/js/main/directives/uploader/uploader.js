@@ -2,7 +2,7 @@ app.directive('uploader', function (FolderSvc) {
 
     return {
         restrict: 'E',
-        templateUrl: 'js/main/directives/uploader/uploader.html',
+        templateUrl: 'uploader.html',
         scope: {
             projectId: '<',
             folderId: '<',

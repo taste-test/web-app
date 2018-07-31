@@ -4,7 +4,7 @@ app.directive('newFolderModal', function (FolderSvc, AppUtilSvc) {
         scope:{
             folder: '<'
         },
-        templateUrl: 'js/main/directives/modals/newFolderModal/newFolderModal.html',
+        templateUrl: 'newFolderModal.html',
         link: function ($scope) {
 
             $scope.newFolderName = "New Folder";

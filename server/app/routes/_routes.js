@@ -12,7 +12,7 @@ const path = require("path");
 
  //API paths
  router.use('/users', require('./auth/_auth'));
- router.use('/api', passport.validateApiRequest, require('./api/_api'));
+ router.use('/api', require('./api/_api'));
  router.use('/session', passport.validateApiRequest, require('./session/_session'));
 
  //View paths

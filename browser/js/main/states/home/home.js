@@ -4,13 +4,14 @@ app.config([
 
         $stateProvider.state('root.home', {
             url: '/',
-            templateUrl: 'js/main/states/home/home.html',
+            templateUrl: 'home.html',
+            // template: '<div>What now</div>',
             controller: StateCtrlr,
             resolve: {}
         });
 
         function StateCtrlr($scope, $timeout, $interval, $state) {
-            TASTE.log("What?");
+            TASTE.log("What?", $state);
             var countdownTime = 5000;
             var displayInterval = 1000;
 
