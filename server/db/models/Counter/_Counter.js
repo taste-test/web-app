@@ -1,5 +1,4 @@
-var MEANLib = require("server/mean-lib").module;
-var mongoose = MEANLib.modules.mongoose;
+const mongoose = require("mongoose");
 
 var counterSchema = new mongoose.Schema({
 	count: Number,

@@ -1,138 +1,126 @@
-// All used modules.
-var gulp = require('gulp');
-var babel = require('gulp-babel');
-var runSeq = require('run-sequence');
-var plumber = require('gulp-plumber');
-var rename = require('gulp-rename');
-var livereload = require('gulp-livereload');
-var eslint = require('gulp-eslint');
-var mocha = require('gulp-mocha');
-var karma = require('karma').server;
-var istanbul = require('gulp-istanbul');
-var notify = require('gulp-notify');
-var path = require("path");
-
-/*
- ██████  ██████  ████████ ██  ██████  ███    ██ ███████
-██    ██ ██   ██    ██    ██ ██    ██ ████   ██ ██
-██    ██ ██████     ██    ██ ██    ██ ██ ██  ██ ███████
-██    ██ ██         ██    ██ ██    ██ ██  ██ ██      ██
- ██████  ██         ██    ██  ██████  ██   ████ ███████
-*/
+const chalk = require('chalk');
+const gulp = require('gulp');
+const babel = require('gulp-babel');
+const sass = require('gulp-sass');
+const glog = require('fancy-log');
+const sourcemaps = require('gulp-sourcemaps');
+const browserSync = require('browser-sync').create();
+const runSeq = require('run-sequence');
+const eslint = require('gulp-eslint');
+const concat = require('gulp-concat');
+const plumber = require('gulp-plumber');
+const stripJsComments = require("gulp-strip-comments");
+const removeEmptyLines = require("gulp-remove-empty-lines");
+const notify = require('gulp-notify');
 
 var esLintRules = {
     "eqeqeq": 0,
-    "no-use-before-define": 0
+    "no-use-before-define": 0,
+    "es6": 0
 };
 
-// -----------------------------------------------------------------------------
-// Sources
-//
-// Not ALL options have been extracted to out here, just the simplest and most
-// reused ones.
-// -----------------------------------------------------------------------------
-
-// Server
-
-var serverJsSrc = ['./server/**/*.js'];
+var esLintParserOpts = {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true
+    }
+}
 
 var esLintServer = {
+    "parserOptions": esLintParserOpts,
     "rules": esLintRules
 };
 
-// Browser
-
-var browserJsSrc = ['./browser/js/app.js', './browser/js/**/*.js'];
-
-var browserCssSrc = ['./browser/scss/**', './browser/scss/**/*.scss'];
-
 var esLintBrowser = {
+    "parserOptions": esLintParserOpts,
     "rules": esLintRules,
-    "env": {
-        "jquery": true
-    },
-    "globals": {
-        "CORE": true
-    }
+    "globals": [
+        "$",
+        "d3",
+        "React",
+        "Router",
+        "Link",
+        "Main",
+    ]
 };
 
-// -----------------------------------------------------------------------------
-// automator
-// -----------------------------------------------------------------------------
+var browserJs = 'browser/js/**/*.js';
+var browserSass = 'browser/scss/**/*.scss';
+var browserFonts = 'browser/fonts/**';
+var browserAssets = 'browser/assets/*.svg';
 
-var automatorOpts = {
-    gulp: gulp,
-    documentation: {
-        markdowns: [{
-            src: "./readme.md",
-            dest: "CORE.WebLibrary/starter/"
-        }, {
-            srcFolder: "./_additional_readmes",
-            dest: "CORE.WebLibrary/starter/"
-        }],
-        ngdocs: [{
-            name: "Mean Starter Angular",
-            src: ["./browser/**/*.js"],
-            dest: "CORE.WebLibrary/starter/code/browser/ng"
-        }],
-        jsdocs: [{
-            name: "MEAN Starter Server JsDoc",
-            src: ["./server/readme.md", "server/", "tests/"],
-            dest: "CORE.WebLibrary/starter/code/server"
-        }],
-        apidocs: [{
-            name: "MEAN Starter APIDoc",
-            // Single string pointing to source folder
-            // ***IMPORTANT***
-            // Do not use the **/*.js gulp pattern for apidoc. Include the folders only.
-            src: "./server/app/routes/",
-            packageDir: "./",
-            dest: "CORE.WebLibrary/starter/code/server/api"
-        }]
-    }
-};
-
-// -----------------------------------------------------------------------------
-// automator execution
-// -----------------------------------------------------------------------------
-
-var automator = require("@ttcorestudio/automator")(automatorOpts);
-// var automator = require("../libraries/npm/@ttcorestudio/automator")(automatorOpts);
-
-var coreWebLibDir = automator.coreWebLibDir;
+var serverJs = 'server/**/*.js';
+var serverHTML = 'server/app/views/*.html';
 
 /*
-██████  ███████ ██    ██ ████████  █████  ███████ ██   ██ ███████
-██   ██ ██      ██    ██    ██    ██   ██ ██      ██  ██  ██
-██   ██ █████   ██    ██    ██    ███████ ███████ █████   ███████
-██   ██ ██       ██  ██     ██    ██   ██      ██ ██  ██       ██
-██████  ███████   ████      ██    ██   ██ ███████ ██   ██ ███████
-*/
+BROWSER SYNC
+ */
 
-// Live reload business.
-gulp.task('reload', function() {
-    livereload.reload();
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: './'
+        },
+        open: false
+    });
 });
 
-gulp.task('reloadCSS', function() {
-    return gulp.src('./public/style.css').pipe(livereload());
+const reload = browserSync.reload;
+
+/*
+TASKS
+ */
+gulp.task('sass', function() {
+    return gulp.src(browserSass)
+        .pipe(sass())
+        .pipe(gulp.dest("public/style"))
+        .pipe(reload({
+            stream: true
+        }));
 });
 
-// -----------------------------------------------------------------------------
-// Linting
-// -----------------------------------------------------------------------------
-gulp.task('lintServerJS', function() {
-    return gulp.src(serverJsSrc)
-        .pipe(plumber({
-            errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
+gulp.task('fonts', function() {
+    return gulp.src(browserFonts)
+        .pipe(gulp.dest("public/fonts"));
+});
+
+gulp.task('assets', function() {
+    return gulp.src(browserAssets)
+        .pipe(gulp.dest("public/assets"));
+});
+
+gulp.task('build-js', function() {
+    return gulp.src(browserJs)
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(concat('main.js'))
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest("public/js"))
+        .pipe(reload({
+            stream: true
         }))
-        .pipe(eslint(esLintServer))
-        .pipe(eslint.format())
-        .pipe(eslint.failOnError());
 });
 
-gulp.task('lintBrowserJS', function() {
-    return gulp.src(browserJsSrc)
+
+gulp.task('build-dependencies', function() {
+    var packageJson = require("./package.json");
+    if (packageJson && packageJson.CORE && packageJson.CORE.clientPackages) {
+        packageJson.CORE.clientPackages.forEach(function(dependency) {
+            gulp.src(dependency.files)
+                .pipe(stripJsComments({
+                    safe: true
+                }))
+                .pipe(removeEmptyLines())
+                .pipe(concat(dependency.name))
+                .pipe(gulp.dest("public/js"))
+        });
+    }
+})
+
+
+gulp.task('lint-browser-js', function() {
+    return gulp.src(browserJs)
         .pipe(plumber({
             errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
         }))
@@ -141,149 +129,51 @@ gulp.task('lintBrowserJS', function() {
         .pipe(eslint.failOnError());
 });
 
-// -----------------------------------------------------------------------------
-// building
-// -----------------------------------------------------------------------------
-
-gulp.task('buildJS', ['lintBrowserJS'], function() {
-    return gulp.src(browserJsSrc)
-        .pipe(automator.pipes.jsBuildDev("main.js"))
-        .pipe(gulp.dest('./public'));
-});
-
-gulp.task('buildCSS', function() {
-    return gulp.src('./browser/scss/main.scss')
-        .pipe(automator.pipes.cssBuildDev("style.css"))
-        .pipe(gulp.dest('./public'));
-});
-
-// -----------------------------------------------------------------------------
-// testing
-// -----------------------------------------------------------------------------
-gulp.task('testServerJS', function() {
-    require('babel-register');
-    return gulp.src('./tests/server/**/*.js', {
-        read: false
-    }).pipe(mocha({
-        reporter: 'spec'
-    }));
-});
-
-gulp.task('testServerJSWithCoverage', function(done) {
-    gulp.src('./server/**/*.js')
-        .pipe(istanbul({
-            includeUntested: true
+gulp.task('lint-server-js', function() {
+    return gulp.src(serverJs)
+        .pipe(plumber({
+            errorHandler: notify.onError('Linting FAILED! Check your gulp process.')
         }))
-        .pipe(istanbul.hookRequire())
-        .on('finish', function() {
-            gulp.src('./tests/server/**/*.js', {
-                    read: false
-                })
-                .pipe(mocha({
-                    reporter: 'spec'
-                }))
-                .pipe(istanbul.writeReports({
-                    dir: './coverage/server/',
-                    reporters: ['html', 'text']
-                }))
-                .on('end', done);
-        });
+        .pipe(eslint(esLintServer))
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError());
 });
 
-gulp.task('testBrowserJS', function(done) {
-    karma.start({
-        configFile: __dirname + '/tests/browser/karma.conf.js',
-        singleRun: true
-    }, done);
-});
 
 /*
-██████  ██████   ██████  ██████  ██    ██  ██████ ████████ ██  ██████  ███    ██
-██   ██ ██   ██ ██    ██ ██   ██ ██    ██ ██         ██    ██ ██    ██ ████   ██
-██████  ██████  ██    ██ ██   ██ ██    ██ ██         ██    ██ ██    ██ ██ ██  ██
-██      ██   ██ ██    ██ ██   ██ ██    ██ ██         ██    ██ ██    ██ ██  ██ ██
-██      ██   ██  ██████  ██████   ██████   ██████    ██    ██  ██████  ██   ████
-*/
-
-gulp.task('buildCSSProduction', function() {
-    return gulp.src('./browser/scss/main.scss')
-        .pipe(automator.pipes.cssBuildProduction("style.css"))
-        .pipe(gulp.dest('./public'))
-});
-
-gulp.task('buildJSProduction', function() {
-    return gulp.src(browserJsSrc)
-        .pipe(automator.pipes.jsBuildProduction("main.js"))
-        .pipe(gulp.dest('./public'));
-});
-
-gulp.task('buildProduction', ['buildCSSProduction', 'buildJSProduction']);
-
-gulp.task('jsBrowserDependencies', function() {
-    var pJson = require("./package.json");
-    if(pJson && pJson.CORE && pJson.CORE.clientPackages) {
-        pJson.CORE.clientPackages.forEach(function(dependency) {
-            gulp.src(dependency.files)
-                .pipe(automator.pipes.jsBuildProduction(dependency.name, {
-                    skipBabel: true
-                }))
-                .pipe(gulp.dest('./public'));
-        });
-    } else {
-        return;
-    }
-});
-
-/*
- ██████  ██████  ███    ███ ██████   ██████  ███████
-██      ██    ██ ████  ████ ██   ██ ██    ██ ██
-██      ██    ██ ██ ████ ██ ██████  ██    ██ ███████
-██      ██    ██ ██  ██  ██ ██   ██ ██    ██      ██
- ██████  ██████  ██      ██ ██████   ██████  ███████
-*/
-
+SEQUENCES
+ */
 gulp.task('build', function() {
-
-    gulp.start("automator-document-clean-tempfiles");
-
-    if(process.env.NODE_ENV === 'production') {
-        runSeq(['jsBrowserDependencies', 'buildJSProduction', 'buildCSSProduction']);
+    if (process.env.NODE_ENV === 'production') {
+        glog(chalk.magenta("Running in production"));
+        runSeq(['build-dependencies', 'build-js', 'fonts', 'assets', 'sass']);
     } else {
-        runSeq(['jsBrowserDependencies', 'buildJS', 'buildCSS']);
+        glog(chalk.yellow("Running in development"));
+        runSeq(['build-dependencies', 'build-js', 'fonts', 'assets', 'sass']);
     }
+});
 
+/*
+WATCH/RUN
+ */
+gulp.task('watch', ['browserSync', 'sass'], function() {
+    gulp.watch(browserSass, ['sass']);
+    // Other watchers
+    gulp.watch(serverHTML, browserSync.reload);
+    gulp.watch(browserJs, browserSync.reload);
 });
 
 gulp.task('default', function() {
-
+    glog(chalk.green("Gulp is running!"));
     gulp.start('build');
+    gulp.start('lint-browser-js');
+    gulp.start('lint-server-js');
 
-    gulp.start('lintServerJS');
+    // Other watchers
+    gulp.watch(browserJs, ['lint-browser-js']);
+    gulp.watch(serverJs, ['lint-server-js']);
 
-    // Run when anything inside of browser/js changes.
-    gulp.watch(browserJsSrc, function() {
-        runSeq('buildJS', 'reload');
-    });
-
-    // Run when anything inside of browser/scss changes.
-    gulp.watch(browserCssSrc, function() {
-        runSeq('buildCSS', 'reloadCSS');
-    });
-
-    // Lint on changes
-    gulp.watch(serverJsSrc, ['lintServerJS']);
-
-    gulp.watch(browserJsSrc, ['lintBrowserJS']);
-
-    // Reload when a template (.html) file changes.
-    gulp.watch(['browser/**/*.html', 'server/app/views/*.html'], ['reload']);
-
-    // Run server tests when a server file or server test file changes.
-    gulp.watch(['tests/server/**/*.js'], ['testServerJS']);
-
-    // Run browser testing when a browser test file changes.
-    gulp.watch('tests/browser/**/*', ['testBrowserJS']);
-
-    livereload.listen();
-
+    gulp.watch([serverHTML], browserSync.reload);
+    gulp.watch(browserJs, ['build-js']);
+    gulp.watch(browserSass, ['sass']);
 });

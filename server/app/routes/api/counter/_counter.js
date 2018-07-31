@@ -1,10 +1,10 @@
-'use strict';
-var MEANLib = require("server/mean-lib").module;
-var router = MEANLib.modules.express.Router();
+const express = require("express");
+const router = express.Router();
+const instance = require("server/instance").get();
 module.exports = router;
 
 router.get("/get-count", function(req, res){
-    return res.json(MEANLib.server.counter.count);
+    return res.json(instance.server.counter.count);
 })
 
 /**
@@ -16,7 +16,7 @@ router.get("/get-count", function(req, res){
  * @apiSuccess {object} image - image comparison
  */
 router.post("/add-count", function (req, res) {
-    var newCount = MEANLib.server.counter.addCount();
+    var newCount = instance.server.counter.addCount();
     console.log("Added count: ", newCount);
     return res.json(newCount);
 });

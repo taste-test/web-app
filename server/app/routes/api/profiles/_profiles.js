@@ -1,6 +1,5 @@
-'use strict';
-var MEANLib = require("server/mean-lib").module;
-var router = MEANLib.modules.express.Router();
+const express = require("express");
+const router = express.Router();
 module.exports = router;
 
 router.get("/get-all-roles", function(req, res){

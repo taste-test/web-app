@@ -1,7 +1,6 @@
 @import "_variables";
-@import "../../node_modules/@ttcorestudio/bootstrap/css/main";
-// @import "../../../libraries/npm/@ttcorestudio/bootstrap/css/main";
-
+@import "../../node_modules/bootstrap/scss/bootstrap";
+$navbar-height: 50px;
 $clear-navbar-height: 60px;
 * {
     box-sizing: border-box;
@@ -40,9 +39,9 @@ $clear-navbar-height: 60px;
    .nav-item .nav-link{
       &:not(.active){
          background: rgba(0,0,0,0.1);
-         color: darken($brand-primary,30%);
+         color: darken($primary,30%);
          &:hover{
-            background: rgba($brand-primary,0.5);
+            background: rgba($primary,0.5);
          }
       }
    }

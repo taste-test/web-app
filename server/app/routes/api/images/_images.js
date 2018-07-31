@@ -1,7 +1,7 @@
-'use strict';
-var MEANLib = require("server/mean-lib").module;
-var middlewareRouter = MEANLib.modules.express.Router();
-var router = MEANLib.modules.express.Router();
+const express = require("express");
+const router = express.Router();
+const middlewareRouter = express.Router();
+
 module.exports = middlewareRouter;
 
 var fs = require('fs');

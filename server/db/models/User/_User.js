@@ -1,5 +1,4 @@
-var MEANLib = require("server/mean-lib").module;
-var mongoose = MEANLib.modules.mongoose;
+const mongoose = require("mongoose");
 var _ = require("lodash");
 
 /**
@@ -59,13 +58,6 @@ var userSchema = new mongoose.Schema({
         }
     }
 });
-
-// bring in the default functions
-MEANLib.server.db.attachUserFunctions(userSchema);
-
-// bring in the project-related functions
-require("./UserProjectFunctions")(userSchema);
-
 
 
 /**

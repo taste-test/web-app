@@ -1,28 +1,21 @@
-'use strict';
-
-var MEANLib = require("server/mean-lib").module;
-var router = MEANLib.modules.express.Router()
+const express = require("express");
+const router = express.Router();
+const path = require("path");
 
 /**
  * Adds routes to express application
  */
-module.exports = function (app) {
-    var routerOptions = {};
+ module.exports = router;
 
-    // Use default routes for authentication/login
-    MEANLib.server.routers.attachDefault(router, routerOptions);
+ let viewsPath = path.join(__dirname, "..", "views/");
+ let passport = require("./auth/passport/_passport");
 
-    // API subrouter
-    router.use('/api', require('./api/_api'));
+ //API paths
+ router.use('/users', require('./auth/_auth'));
+ router.use('/api', passport.validateApiRequest, require('./api/_api'));
+ router.use('/session', passport.validateApiRequest, require('./session/_session'));
 
-    // Send to index.html otherwise
-    router.get('/*', function (req, res) {
-        res.sendFile(app.get('indexHTMLPath'));
-    });
-
-    // Use default 404s
-    MEANLib.server.routers.attachLast(router);
-
-    app.use("/", router);
-
-};
+ //View paths
+ router.get("/*", function(req, res) {
+     res.sendFile(viewsPath + "index.html");
+ });

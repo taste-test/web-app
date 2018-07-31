@@ -1,11 +1,10 @@
-var MEANLib = require("server/mean-lib").module;
-var mongoose = MEANLib.modules.mongoose;
+const mongoose = require("mongoose");
 
-var Profile = require("server/db/models/Profile/_Profile");
+const Profile = require("server/db/models/Profile/_Profile");
 
-var async = require("async");
+const async = require("async");
 
-var comparisonSchema = new mongoose.Schema({
+const comparisonSchema = new mongoose.Schema({
     feature: String,
     negative: String,
     positive: String,

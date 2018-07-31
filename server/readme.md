@@ -1,3 +1,3 @@
-# Starter server documentation
+# Taste Test
 
-This is documentation for the starter's server-side code.
+Web application for taste test
