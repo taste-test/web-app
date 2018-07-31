@@ -1,0 +1,45 @@
+footer {
+    width: 100%;
+    height: auto;
+    .brand {
+        width: 100%;
+        margin-top: 15px;
+        position: absolute;
+        bottom: 0;
+        height: auto;
+        line-height: 35px;
+        background: $gray-darker;
+        color: $gray-lighter;
+        svg.core-logo {
+            fill: currentColor;
+            max-height: 25px;
+            position: relative;
+            top: 2px;
+            width: 250px;
+        }
+        a:hover{
+            color: #fff;
+        }
+    }
+    // .secondary{
+    //     background:$footer-secondary-bg;
+    //     color: $footer-secondary-color;
+    //     padding-top: 15px;
+    //     padding-bottom: 15px;
+    //     &:after{
+    //         display: block;
+    //         content: "";
+    //         height: 35px;
+    //     }
+    //     a{
+    //         color: $footer-secondary-a;
+    //         &:hover{
+    //             color: $footer-secondary-a-hover;
+    //         }
+    //     }
+    // }
+}
+footer.static-bottom{
+    position: absolute;
+    bottom: 0;
+}
