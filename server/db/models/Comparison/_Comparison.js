@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const Profile = require("server/db/models/Profile/_Profile");
 
 const async = require("async");
