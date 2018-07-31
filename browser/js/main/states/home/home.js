@@ -4,7 +4,7 @@ app.config([
 
         $stateProvider.state('root.home', {
             url: '/',
-            templateUrl: 'home.html',
+            templateUrl: 'js/main/states/home/home.html',
             // template: '<div>What now</div>',
             controller: StateCtrlr,
             resolve: {}

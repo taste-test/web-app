@@ -5,7 +5,7 @@ app.directive('filesList', function(AppUtilSvc, FileSvc, NotificationService) {
 			wFiles: '=',
 			deleteItem: '<'
 		},
-		templateUrl: 'filesList.html',
+		templateUrl: 'js/main/directives/filesList/filesList.html',
 		link: function($scope) {
 
 			$scope.modalId = "image-modal-" + $scope.$id;

@@ -2,7 +2,7 @@ app.config(function($stateProvider) {
 
     $stateProvider.state('root.compare.comparisons', {
         url: '/',
-        templateUrl: 'compare.comparisons.html',
+        templateUrl: 'js/main/states/compare/compare.comparisons.html',
         controller: StateCtrlr
     });
 

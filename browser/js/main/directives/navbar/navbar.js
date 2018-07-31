@@ -2,7 +2,7 @@ app.directive('navbar', function ($rootScope, AuthService, CountSvc,AUTH_EVENTS)
 
     return {
         restrict: 'E',
-        templateUrl: 'navbar.html',
+        templateUrl: 'js/main/directives/navbar/navbar.html',
         scope: true,
         link: function ($scope) {
 

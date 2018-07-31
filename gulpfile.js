@@ -4,7 +4,7 @@ const babel = require('gulp-babel');
 const sass = require('gulp-sass');
 const glog = require('fancy-log');
 const sourcemaps = require('gulp-sourcemaps');
-const embedTemplates = require('gulp-angular-embed-templates');
+// const embedTemplates = require('gulp-angular-embed-templates');
 const browserSync = require('browser-sync').create();
 const runSeq = require('run-sequence');
 const eslint = require('gulp-eslint');
@@ -95,7 +95,7 @@ gulp.task('assets', function() {
 gulp.task('build-js', function() {
     return gulp.src(browserJs)
         .pipe(sourcemaps.init())
-        .pipe(embedTemplates())
+        // .pipe(embedTemplates())
         .pipe(babel())
         .pipe(concat('main.js'))
         .pipe(sourcemaps.write())
