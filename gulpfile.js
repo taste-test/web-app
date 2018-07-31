@@ -96,7 +96,7 @@ gulp.task('build-js', function() {
         .pipe(babel())
         .pipe(concat('main.js'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest("public/js"))
+        .pipe(gulp.dest("./public"))
         .pipe(reload({
             stream: true
         }))
@@ -113,7 +113,7 @@ gulp.task('build-dependencies', function() {
                 }))
                 .pipe(removeEmptyLines())
                 .pipe(concat(dependency.name))
-                .pipe(gulp.dest("public/js"))
+                .pipe(gulp.dest("./public"))
         });
     }
 })

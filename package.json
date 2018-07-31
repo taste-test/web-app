@@ -20,7 +20,7 @@
         "angular-mocks": "~1.4.0",
         "angular-ui-bootstrap": "~0.14.3",
         "angular-ui-router": "~0.2.15",
-        "angularjs-slider": "^6.5.1",
+        "angularjs-slider": "^6.6.1",
         "async": "^2.6.1",
         "bluebird": "^3.5.0",
         "body-parser": "^1.17.2",
@@ -48,7 +48,7 @@
         "http": "0.0.0",
         "jquery": "^3.2.1",
         "jsonwebtoken": "^8.1.0",
-        "lodash": "^4.17.4",
+        "lodash": "^4.17.10",
         "moment": "^2.22.2",
         "mongoose": "^4.13.11",
         "needle": "^2.2.1",
@@ -86,18 +86,13 @@
             {
                 "name": "package.js",
                 "files": [
-                    "./node_modules/jquery/dist/jquery.min.js",
-                    "./node_modules/popper.js/dist/popper.min.js",
-                    "./node_modules/lodash/index.js",
                     "./node_modules/angular/angular.js",
                     "./node_modules/angular-animate/angular-animate.min.js",
                     "./node_modules/angular-ui-router/release/angular-ui-router.js",
+                    "./node_modules/jquery/dist/jquery.min.js",
                     "./node_modules/socket.io-client/dist/socket.io.min.js",
                     "./node_modules/moment/min/moment.min.js",
-                    "./node_modules/angularjs-slider/dist/rzslider.min.js",
-                    "./node_modules/@ttcorestudio/core/.dist/core.js",
-                    "./node_modules/@ttcorestudio/bootstrap/.dist/bootstrap.js",
-                    "./node_modules/@ttcorestudio/mean-lib/.dist/browser/app.js"
+                    "./node_modules/angularjs-slider/dist/rzslider.min.js"
                 ]
             }
         ]

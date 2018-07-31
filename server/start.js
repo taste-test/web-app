@@ -8,4 +8,5 @@ const persistInstance = require('./instance');
 createInstance().then(function(instance){
     persistInstance.set(instance);
     persistInstance.attach();
+    console.log("instance started", Object.keys(instance));
 })

@@ -51,9 +51,9 @@ module.exports = function() {
             // });
         };
 
-        var createStartServer = function(app) {
+        var createStartServer = function() {
             //Start server
-            const server = http.createServer(app);
+            const server = http.createServer(resolvedInstance.app);
             resolvedInstance.server = server;
 
             resolve(resolvedInstance);
