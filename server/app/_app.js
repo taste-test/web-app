@@ -7,6 +7,8 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
+const favicon = require('serve-favicon');
+
 
 // Serialize and deserialize are required functions for passport module to function
 passport.serializeUser(function(user, done) {
@@ -21,7 +23,7 @@ passport.deserializeUser(function(id, done) {
 	});
 });
 
-module.exports = function(app, port) {
+module.exports = function(app, port, options) {
 	app.setValue = app.set.bind(app);
 
 	app.getValue = function(pathVal) {
@@ -31,12 +33,21 @@ module.exports = function(app, port) {
 
 	var rootPath = path.join(__dirname, '../../');
 
-	var publicPath = path.join(rootPath, './public');
-	var browserPath = path.join(rootPath, './browser');
-	
 	//Static directories
-	app.use(express.static(publicPath));
-    app.use(express.static(browserPath));
+	if (options.staticPaths) {
+		options.staticPaths.map(function(eachPath){
+			var curPath = path.join(rootPath, eachPath);
+			app.use(express.static(curPath));
+		});
+	} else {
+		var publicPath = path.join(rootPath, './public');
+		var browserPath = path.join(rootPath, './browser');
+
+		app.use(express.static(publicPath));
+		app.use(express.static(browserPath));
+	}
+
+	if (options.faviconPath) app.use(favicon(path.join(rootPath,options.faviconPath))); 
 
 	//Middleware to parse requests
 	app.use(bodyParser.json());

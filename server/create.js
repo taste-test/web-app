@@ -11,7 +11,8 @@ const path = require("path");
 
 require('rootpath')();
 
-module.exports = function() {
+module.exports = function(options) {
+    var createOpts = options || {};
     /*
     ENVIRONMENT VARIABLES
     */
@@ -39,7 +40,7 @@ module.exports = function() {
             //Set DB models
 
             //Create application
-            require("./app/_app")(app, port);
+            require("./app/_app")(app, port, createOpts);
 
             //Create router, use the base URL and route from there
             const router = require("./app/routes/_routes");
