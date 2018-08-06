@@ -35,7 +35,7 @@ router.get("/image-comparison", function(req, res) {
     //     fileName = 'server/_assets/images/' + i + '.jpg';
     //     getComparisonJson.images.push(convertImgFileToBuffer(fileName));
     // }
-    needle("get", process.env.CORE_LEARN_IP + "/taste/test/comparisons/generate/" + numComparisons + "/", null, needleOpts).then(function(resp) {
+    needle("get", process.env.TASTE_TEST_SERVER + "/taste/test/comparisons/generate/" + numComparisons + "/", null, needleOpts).then(function(resp) {
         getComparisonJson = resp.body;
         getComparisonJson.images = {};
         var parseImgs = function(comparisonSet) {
@@ -65,7 +65,7 @@ router.post("/comparison-summary", function(req, res) {
         userProfile = Comparison.addSetAndProfile(req.body.comparisons, req.body.role, saveResultsToUser);
     }
 
-    needle("post", process.env.CORE_LEARN_IP + "/taste/test/comparisons/summary/", reqComparisons, needleOpts).then(function(resp) {
+    needle("post", process.env.TASTE_TEST_SERVER + "/taste/test/comparisons/summary/", reqComparisons, needleOpts).then(function(resp) {
         getScoresJson = resp.body;
         if (typeof resp.body === "string") return res.status(500).send("Not an object");
         getScoresJson.images = [];
